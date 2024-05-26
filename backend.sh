@@ -58,7 +58,7 @@ rm -rf /app/*  &>>$LOGFILE
 unzip /tmp/backend.zip  &>>$LOGFILE
 VALIDATE $? "extacing code"
 
-cp /home/ec2-user/backend.service /etc/systemd/system/  &>>$LOGFILE
+cp /home/ec2-user//expense-shell/backend.service /etc/systemd/system/  &>>$LOGFILE
 VALIDATE $? "copying file backend.service"
 
 systemctl daemon-reload  &>>$LOGFILE
