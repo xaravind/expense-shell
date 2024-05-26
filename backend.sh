@@ -58,7 +58,7 @@ rm -rf /app/*  &>>$LOGFILE
 unzip /tmp/backend.zip  &>>$LOGFILE
 VALIDATE $? "extacing code"
 
-npm install
+npm install  &>>$LOGFILE
 VALIDATE $? "Installing nodejs dependencies"
 
 cp /home/ec2-user//expense-shell/backend.service /etc/systemd/system/  &>>$LOGFILE
