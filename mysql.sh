@@ -36,6 +36,16 @@ VALIDATE $? "enabling my sql server"
 systemctl start mysqld &>>$LOGFILE 
 VALIDATE $? "starting my sql server"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
-VALIDATE $? "setting up root server"
+# mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+# VALIDATE $? "setting up root server"
+
+#Below code will be useful for idempotent nature
+mysql db.dopspractice.online -uroot -pExpenseApp@1 -e 'SHOW DATABASES;'
+if [ $? -ne 0 ]
+then
+  mysql_secure_installation --set-root-pass ExpenseApp@1
+  VALIDATE $? "Setting up root password"
+else
+  echo -e "MySQL Root password is already setup...$Y SKIPPING $N"
+fi
 
